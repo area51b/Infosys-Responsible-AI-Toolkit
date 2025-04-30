@@ -1,10 +1,12 @@
-FROM python:3.9.13
+FROM python:3.11.12
  
 ENV DEBIAN_FRONTEND=noninteractive
- 
-Copy . .
- 
+
+# Copy entire project
+COPY . /app
+
+WORKDIR /app
 RUN pip3 install -r requirements/requirement.txt
-WORKDIR src
- 
-CMD ["sh", "-c", "python3 main.py"]
+
+WORKDIR /app/src
+CMD ["python3", "main.py"]
